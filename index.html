@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo booth ✿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="confetti-container" id="confetti"></div>
+  <div class="doodles">
+    <span class="doodle d1">✿</span>
+    <span class="doodle d2">★</span>
+    <span class="doodle d3">♡</span>
+    <span class="doodle d4">✦</span>
+    <span class="doodle d5">◎</span>
+    <span class="doodle d6">✿</span>
+    <span class="doodle d7">♡</span>
+    <span class="doodle d8">★</span>
+  </div>
+
+  <!-- ══ SCREEN 1: LANDING ══ -->
+  <div id="screen-start" class="screen active">
+    <div class="start-wrap">
+
+      <div class="start-header">
+        <div class="title-badge">say cheese! 📸</div>
+        <h1 class="start-title">Photo<br>booth</h1>
+        <p class="start-sub">your personal photo studio ✿</p>
+      </div>
+
+      <!-- Format -->
+      <div class="section-block">
+        <p class="section-title">✦ pick your format</p>
+        <div class="pill-row">
+          <button class="pill active" data-mode="filmstrip" onclick="selectMode(this)">🎞 film strip</button>
+          <button class="pill" data-mode="polaroid" onclick="selectMode(this)">📷 polaroid</button>
+        </div>
+      </div>
+
+      <!-- Count -->
+      <div class="section-block">
+        <p class="section-title">✦ how many shots?</p>
+        <div class="pill-row">
+          <button class="count-pill" data-count="2" onclick="selectCount(this)">2</button>
+          <button class="count-pill active" data-count="4" onclick="selectCount(this)">4</button>
+          <button class="count-pill" data-count="6" onclick="selectCount(this)">6</button>
+        </div>
+      </div>
+
+      <!-- Filter -->
+      <div class="section-block">
+        <p class="section-title">✦ choose your filter</p>
+        <div class="filter-grid">
+          <button class="filter-card active" data-filter="warm" onclick="selectFilter(this)">
+            <div class="filter-swatch warm-swatch"></div>
+            <span>warm film</span>
+          </button>
+          <button class="filter-card" data-filter="faded" onclick="selectFilter(this)">
+            <div class="filter-swatch faded-swatch"></div>
+            <span>faded</span>
+          </button>
+          <button class="filter-card" data-filter="lightleak" onclick="selectFilter(this)">
+            <div class="filter-swatch leak-swatch"></div>
+            <span>light leak</span>
+          </button>
+          <button class="filter-card" data-filter="cross" onclick="selectFilter(this)">
+            <div class="filter-swatch cross-swatch"></div>
+            <span>vivid</span>
+          </button>
+          <button class="filter-card" data-filter="bw" onclick="selectFilter(this)">
+            <div class="filter-swatch bw-swatch"></div>
+            <span>b & w</span>
+          </button>
+          <button class="filter-card" data-filter="cool" onclick="selectFilter(this)">
+            <div class="filter-swatch cool-swatch"></div>
+            <span>cool blue</span>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn-go" id="btnStart">open camera ✿</button>
+
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 2: CAMERA ══ -->
+  <div id="screen-camera" class="screen">
+    <div class="booth-wrap">
+
+      <div class="camera-col">
+        <div class="cam-topbar">
+          <span class="cam-tag" id="vfModeTag">film strip</span>
+          <span class="cam-counter" id="frameCounter">1 / 4</span>
+          <span class="cam-tag filter-tag" id="vfFilterTag">warm film</span>
+        </div>
+
+        <div class="viewfinder" id="viewfinder">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="captureCanvas" style="display:none"></canvas>
+          <div class="flash" id="flash"></div>
+          <div class="countdown-overlay">
+            <span id="countdownNum"></span>
+          </div>
+          <div class="vf-vignette"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+        </div>
+
+        <div class="cam-footer">
+          <button class="btn-shutter" id="btnShoot">
+            <span class="shutter-outer"></span>
+            <span class="shutter-inner"></span>
+          </button>
+          <p class="cam-hint" id="shootHint">click to snap ✿</p>
+        </div>
+      </div>
+
+      <div class="thumb-col" id="thumbStrip"></div>
+
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 3: RESULT ══ -->
+  <div id="screen-result" class="screen">
+    <div class="result-wrap">
+      <p class="result-eyebrow">✿ all done! ✿</p>
+      <div class="result-canvas-wrap">
+        <canvas id="filmCanvas"></canvas>
+      </div>
+      <div class="result-btns">
+        <button class="btn-go" id="btnDownload">save ↓</button>
+        <button class="btn-soft" id="btnRetake">retake</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
